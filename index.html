@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MetAI Chatbot</title>
+  <meta name="google-adsense-account" content="ca-pub-6682218817254498">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background: #f4f4f4;
+    }
+    #chatbox {
+      max-width: 600px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    #messages {
+      height: 300px;
+      overflow-y: auto;
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+    input[type="text"] {
+      width: 80%;
+      padding: 10px;
+    }
+    button {
+      padding: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div id="chatbox">
+    <h1>MetAI Assistant</h1>
+    <div id="messages"></div>
+    <input type="text" id="user-input" placeholder="Ask me anything..." />
+    <button onclick="sendMessage()">Send</button>
+  </div>
+
+  <script>
+    function sendMessage() {
+      const userInput = document.getElementById('user-input').value;
+      const messagesDiv = document.getElementById('messages');
+      const userMsg = document.createElement('div');
+      userMsg.textContent = "You: " + userInput;
+      messagesDiv.appendChild(userMsg);
+
+      const botMsg = document.createElement('div');
+      botMsg.textContent = "MetAI: " + getBotResponse(userInput);
+      messagesDiv.appendChild(botMsg);
+
+      document.getElementById('user-input').value = "";
+      messagesDiv.scrollTop = messagesDiv.scrollHeight;
+    }
+
+    function getBotResponse(input) {
+      input = input.toLowerCase();
+      if (input.includes("hello") || input.includes("hi")) {
+        return "Hello! I'm MetAI. How can I help you?";
+      } else if (input.includes("your name")) {
+        return "I'm MetAI, your virtual assistant.";
+      } else if (input.includes("time")) {
+        return "The current time is " + new Date().toLocaleTimeString();
+      } else {
+        return "I'm still learning! Try asking something else.";
+      }
+    }
+  </script>
+</body>
+</html>
